@@ -7,8 +7,19 @@ body{
 }
 
 .column {
-  flex: 33.33%;
-  padding: 5px;
+  float: left;
+}
+
+.left {
+  width: 25%;
+}
+
+.middle {
+  width: 20%;
+}
+
+.right {
+  width: 55%;
 }
 
 .group2-container {
@@ -337,7 +348,7 @@ body{
   font-stretch: normal;
   text-decoration: none;
 }
-.group2-group1 {
+.subscribe-box {
   top: 1474px;
   left: 0px;
   width: 1440px;
@@ -454,31 +465,32 @@ body{
   flex-direction: column;
   justify-content: center;
 }
-.group2-login-page1 {
-  top: 0px;
-  left: 0px;
-  width: 1440px;
-  height: 1450px;
-  display: flex;
-  overflow: hidden;
-  position: absolute;
-  align-items: flex-end;
-  flex-shrink: 0;
-  background-color: rgba(255, 255, 255, 1);
-}
 .group2-frame31 {
-  gap: 48px;
+  /* gap: 48px; */
   width: 1440px;
-  height: 1450px;
+  height: 700px;
   display: flex;
   padding: 60px;
   overflow: hidden;
   position: relative;
-  align-items: flex-start;
+  align-items: center;
   flex-shrink: 0;
   flex-direction: column;
   justify-content: center;
   background-color: var(--dl-color-colors_font-primary);
+}
+.group2-frame32 {
+  width: 1440px;
+  height: 500px;
+  display: flex;
+  padding: 60px;
+  overflow: hidden;
+  position: relative;
+  align-items: center;
+  flex-shrink: 0;
+  flex-direction: column;
+  justify-content: center;
+  background-color: rgb(13, 26, 38);
 }
 .group2-text30 {
   top: 57px;
@@ -493,14 +505,11 @@ body{
   font-family: Judson;
   font-weight: 700;
   line-height: 150%;
-  font-stretch: normal;
-  text-decoration: none;
 }
 .group2-text34 {
-  top: 778px;
   left: 60px;
   color: rgba(255, 255, 255, 1);
-  width: 624px;
+  width: 1440px;
   height: auto;
   z-index: 1;
   position: absolute;
@@ -513,30 +522,21 @@ body{
   font-stretch: normal;
   text-decoration: none;
 }
-.group2-image2 {
-  top: 356px;
-  left: 1166px;
-  width: 250px;
-  height: 186px;
-  z-index: 2;
-  position: absolute;
+
+.images-row {
+  display: flex;
+  justify-content: center; /* This centers the images in the row */
+  gap: 20px; /* Adjust the gap between images as necessary */
+  width: 100%; /* Ensures the row takes full width; adjust as needed */
 }
-.group2-image1 {
-  top: 697px;
-  left: 1160px;
-  width: 256px;
-  height: 256px;
-  z-index: 1;
-  position: absolute;
+
+.group2-image1, .group2-image2, .group2-image3 {
+  width: 200px; /* Adjust the width as necessary */
+  height: 200px; /* Maintains aspect ratio */
+  /* Remove any positioning if it conflicts with flex layout */
+  position: static; /* Change from absolute to static if necessary */
 }
-.group2-image3 {
-  top: 1097px;
-  left: 1163px;
-  width: 256px;
-  height: 265px;
-  z-index: 2;
-  position: absolute;
-}
+
 .group2-text-field2 {
   gap: 8px;
   top: 1784px;
