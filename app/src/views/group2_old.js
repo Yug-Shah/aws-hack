@@ -1,6 +1,9 @@
-import React, { useRef, useEffect, useState } from 'react';
-import { Helmet } from 'react-helmet';
-import './group2.css';
+import React from 'react'
+
+import { useRef, useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet'
+
+import './group2.css'
 
 const Group2 = (props) => {
   // Creating a ref for each canvas
@@ -9,32 +12,31 @@ const Group2 = (props) => {
     React.createRef(),
     React.createRef(),
     React.createRef(),
-    React.createRef(),
+    React.createRef()
   ]);
 
-  // States for floor numbers
-  const [floorNumbers, setFloorNumbers] = useState([0, 0, 0, 0, 0]);
-
   useEffect(() => {
-    const dataSets = [
-      [65, 59, 80, 81, 56, 55, 40],
-      [75, 88, 76, 44, 60, 58, 63],
-      [25, 48, 90, 66, 85, 70, 90],
-      [85, 75, 60, 44, 56, 55, 88],
-      [45, 54, 65, 85, 76, 65, 55],
-    ];
-
     canvasRefs.current.forEach((ref, index) => {
+      // Example dataset for each floor, replace with actual data
+      const dataSets = [
+        [65, 59, 80, 81, 56, 55, 40],
+        [75, 88, 76, 44, 60, 58, 63],
+        [25, 48, 90, 66, 85, 70, 90],
+        [85, 75, 60, 44, 56, 55, 88],
+        [45, 54, 65, 85, 76, 65, 55]
+      ];
+
       if (ref.current) {
         const canvas = ref.current;
         const ctx = canvas.getContext('2d');
+
         const width = canvas.width;
         const height = canvas.height;
         const data = dataSets[index];
         const maxData = Math.max(...data);
+
         const scaledData = data.map(d => (d / maxData) * height * 0.8);
 
-        ctx.clearRect(0, 0, width, height); // Clear previous drawing
         ctx.beginPath();
         ctx.moveTo(0, height - scaledData[0]);
         scaledData.forEach((d, idx) => {
@@ -45,22 +47,6 @@ const Group2 = (props) => {
         ctx.stroke();
       }
     });
-
-    // Update floor numbers every 2 seconds
-    const interval = setInterval(() => {
-        setFloorNumbers(floorNumbers => floorNumbers.map(number => {
-          // Decide randomly whether to add or subtract 1
-          let change = Math.random() > 0.5 ? 1 : -1;
-          // Calculate new number with change
-          let newNumber = number + change;
-          // Ensure new number stays within 50-200 range
-          if (newNumber < 50) return 50;
-          if (newNumber > 200) return 200;
-          return newNumber;
-        }));
-      }, 3000);
-
-    return () => clearInterval(interval);
   }, []);
 
   return (
@@ -69,7 +55,7 @@ const Group2 = (props) => {
         <title>Robarts Commons Library Heat Map</title>
       </Helmet>
       <div className="group2-frame31">
-        <div className="group2-text30">Robarts Commons Library</div>
+        <div className="group2-text30">Robarts Library Heat Map</div>
         <div className="images-row">
           <img alt="image14051" src="/external/image14051-2nai-300h.png" className="group2-image1"/>
           <img alt="image24051" src="/external/image24051-7on-300w.png" className="group2-image2"/>
@@ -88,50 +74,60 @@ const Group2 = (props) => {
                   <span>Never Miss a Study Spot</span>
                 </span>
                 <span className="group2-text28">
-                  <span>Fill in your email to be notified of free study spots at Robarts!</span>
+                  <span>
+                    Fill in your email to be notified of free study spots at
+                    Robarts!
+                  </span>
                 </span>
               </div>
               <div className="group2-form">
                 <div className="group2-text-field1">
                   <div className="group2-input-group2">
-                    <input type="text" placeholder="Email address" className="group2-input2"/>
+                    <input
+                      type="text"
+                      placeholder="Email address"
+                      className="group2-input2"
+                    />
                   </div>
                 </div>
                 <div className="group2-text-field1">
                   <div className="group2-input-group2">
-                    <input type="text" placeholder="Full Name" className="group2-input2"/>
+                    <input
+                      type="text"
+                      placeholder="Full Name"
+                      className="group2-input2"
+                    />
                   </div>
                 </div>
               </div>
               <div>
-                <input className="group2-text62 componentsbuttondefault" type="button" value="Sign me up!"/>
+                  <input className="group2-text62 componentsbuttondefault" type="button" value="Sign me up!"/> 
               </div>
             </div>
           </div>
         </div>
         <div className='group2-frame32'>
           <div className="group2-text34">
-            {floorNumbers.map((number, i) => (
-              <div className='row' key={i}>
-                <div className='column left'>{`${i+1}${getOrdinal(i+1)} Floor (${number})`}</div>
-                <div className='column right'>
-                  <canvas ref={canvasRefs.current[i]} width="792" height="200"></canvas>
-                </div>
-              </div>
-            ))}
+            <div className='row'>
+              <div class='column left'>1st Floor</div><div id="floor1" class='column middle'></div><div class='column right'><canvas ref={canvasRefs.current[0]} width="792" height="200"></canvas></div>
+            </div>
+            <div className='row'>
+              <div class='column left'>2nd Floor</div><div id="floor2" class='column middle'></div><div class='column right'><canvas ref={canvasRefs.current[1]} width="792" height="200"></canvas></div>
+            </div>
+            <div className='row'>
+              <div class='column left'>3rd Floor</div><div id="floor3" class='column middle'></div><div class='column right'><canvas ref={canvasRefs.current[2]} width="792" height="200"></canvas></div>
+            </div>
+            <div className='row'>
+              <div class='column left'>4th Floor</div><div id="floor4" class='column middle'></div><div class='column right'><canvas ref={canvasRefs.current[3]} width="792" height="200"></canvas></div>
+            </div>
+            <div className='row'>
+              <div class='column left'>5th Floor</div><div id="floor5" class='column middle'></div><div class='column right'><canvas ref={canvasRefs.current[4]} width="792" height="200"></canvas></div>
+            </div>
           </div>
         </div>
       </div>
     </div>
-  );
-};
-
-// Helper function to get ordinal numbers (1st, 2nd, 3rd, etc.)
-function getOrdinal(n) {
-  const s=["th","st","nd","rd"],
-        v=n%100;
-  return s[(v-20)%10]||s[v]||s[0];
+  )
 }
 
-export default Group2;
-
+export default Group2

@@ -481,7 +481,7 @@ body{
 }
 .group2-frame32 {
   width: 1440px;
-  height: 500px;
+  height: 1440px;
   display: flex;
   padding: 60px;
   overflow: hidden;
@@ -496,7 +496,7 @@ body{
   top: 57px;
   left: 60px;
   color: var(--dl-color-colors_brand_primary-10);
-  width: 1320px;
+  width: 1500px;
   height: auto;
   position: absolute;
   font-size: 96px;
