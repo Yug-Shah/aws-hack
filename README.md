@@ -1,4 +1,4 @@
-# Space at Roberts?
+# Space at Robarts?
 
 ## Overview
 The Robarts Commons Seat Tracker is an innovative, real-time seat availability system designed for the students of the University of Toronto. Utilizing image recognition, this application aims to enhance the study experience at Robarts Library by providing up-to-the-minute information on seat occupancy across different floors of the library. Especially during the high-demand exam seasons, this tool becomes essential for students commuting to campus and looking for a quiet study spot.
