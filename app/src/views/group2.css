@@ -4,6 +4,7 @@ body{
 
 .row {
   display: flex;
+  margin-bottom: 70px;
 }
 
 .column {
@@ -12,6 +13,7 @@ body{
 
 .left {
   width: 25%;
+  flex: 1;
 }
 
 .middle {
@@ -19,7 +21,12 @@ body{
 }
 
 .right {
-  width: 55%;
+  width: 85%;
+  flex: 3;
+}
+
+.canvas-container {
+  padding-top: 30px; /* Add padding to the top to avoid cutting off labels */
 }
 
 .group2-container {
@@ -31,11 +38,12 @@ body{
   flex-direction: column;
 }
 .group2-group2 {
-  width: 1440px;
-  height: 2014px;
+  width: 100%;
+  height: 1500px;
   display: flex;
   position: relative;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   flex-shrink: 1;
 }
 .group2-login-page {
@@ -349,38 +357,69 @@ body{
   text-decoration: none;
 }
 .subscribe-box {
-  top: 1474px;
+  top: 1700px;
   left: 0px;
-  width: 1440px;
-  height: 540px;
+  right: 0px;
+  width: 100vw;
+  height: 100px;
   display: flex;
   position: absolute;
-  align-items: flex-start;
+  align-items: center; /* Center align items vertically */
+  justify-content: center;
   flex-shrink: 1;
+  background-color: #cd2323;
+  margin: 0; /* Ensure no margin is added */
+  padding: 0; /* Ensure no padding is added */
+  box-sizing: border-box;
 }
+
+.subscribe-box span,
+.subscribe-box input,
+.subscribe-box div {
+  font-size: 30px; /* Adjust the size as needed */
+  line-height: 1.5;
+}
+
 .group2-cta-section {
   gap: 10px;
   top: 0px;
   left: 0px;
-  width: 1440px;
-  height: 540px;
+  width: 100%;
+  height: auto;
   display: flex;
-  padding: 160px;
+  padding: 100px;
   overflow: hidden;
   position: absolute;
   align-items: flex-start;
+  justify-content: space-between;
   flex-shrink: 0;
-  flex-direction: column;
-  justify-content: center;
+  flex-direction: row;
   background-color: var(--dl-color-colors_background-primary);
 }
 .group2-type-lock-up {
   gap: 24px;
+  /*width: 50%; */
   display: flex;
   align-self: stretch;
   align-items: flex-start;
   flex-direction: column;
   justify-content: center;
+}
+
+.group2-ad {
+  display: flex;
+  align-items: flex-start ;
+  justify-content: flex-end;
+  margin-right: 120px;
+  font-size: 25px;
+  font-style: Bold;
+  text-align: left;
+  font-family: Judson;
+  font-weight: 700;
+  color: var(--dl-color-colors_brand_secondary-60);
+  flex: 1;
+  text-align: center;
+  margin-top: 10px;
 }
 .group2-frame436 {
   gap: 12px;
@@ -468,9 +507,9 @@ body{
 .group2-frame31 {
   /* gap: 48px; */
   width: 1440px;
-  height: 700px;
+  height: 550px;
   display: flex;
-  padding: 60px;
+  padding: 20px;
   overflow: hidden;
   position: relative;
   align-items: center;

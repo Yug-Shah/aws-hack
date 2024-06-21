@@ -3,26 +3,20 @@ import { Helmet } from 'react-helmet';
 import './group2.css';
 
 const Group2 = (props) => {
-  // Creating a ref for each canvas
-  const canvasRefs = useRef([
-    React.createRef(),
-    React.createRef(),
-    React.createRef(),
-    React.createRef(),
-    React.createRef(),
-  ]);
+  const canvasRefs = useRef([React.createRef(), React.createRef(), React.createRef(), React.createRef(), React.createRef()]);
 
-  // States for floor numbers
   const [floorNumbers, setFloorNumbers] = useState([0, 0, 0, 0, 0]);
 
   useEffect(() => {
     const dataSets = [
-      [65, 59, 80, 81, 56, 55, 40],
-      [75, 88, 76, 44, 60, 58, 63],
-      [25, 48, 90, 66, 85, 70, 90],
-      [85, 75, 60, 44, 56, 55, 88],
-      [45, 54, 65, 85, 76, 65, 55],
+      [20, 38, 57, 18, 22, 10, 10],
+      [30, 35, 45, 50, 55, 60, 50],
+      [23, 52, 35, 39, 23, 21, 2],
+      [38, 51, 28, 14, 42, 27, 35],
+      [59, 20, 32, 11, 57, 21, 60],
     ];
+
+    const padding = 30;
 
     canvasRefs.current.forEach((ref, index) => {
       if (ref.current) {
@@ -31,34 +25,70 @@ const Group2 = (props) => {
         const width = canvas.width;
         const height = canvas.height;
         const data = dataSets[index];
-        const maxData = Math.max(...data);
+        const maxData = 60;
         const scaledData = data.map(d => (d / maxData) * height * 0.8);
 
-        ctx.clearRect(0, 0, width, height); // Clear previous drawing
+        ctx.clearRect(0, 0, width, height); 
+        
         ctx.beginPath();
-        ctx.moveTo(0, height - scaledData[0]);
-        scaledData.forEach((d, idx) => {
-          ctx.lineTo((width / (scaledData.length - 1)) * idx, height - d);
-        });
-        ctx.strokeStyle = 'green'; // Change line color to green
-        ctx.lineWidth = 4; // Increase line thickness
+        ctx.moveTo(padding, 0);
+        ctx.lineTo(padding, height - padding);
+        ctx.lineTo(width, height - padding);
+        ctx.strokeStyle = 'white'; 
+        ctx.lineWidth = 2; 
         ctx.stroke();
+
+        ctx.fillStyle = 'white';
+        ctx.font = '15px Arial';
+
+        const yTicks = 6;
+        for (let i = 0; i <= yTicks; i++) {
+          const y = (height - padding) - (i * (height - padding) / yTicks);
+          ctx.moveTo(padding - 5, y);
+          ctx.lineTo(padding + 5, y);
+          ctx.stroke();
+          ctx.fillText((maxData / yTicks * i).toFixed(0), padding - 18, y + 3);
+        }
+        const xLabels = ['6am', '9am', '12pm', '3pm', '6pm', '9pm', '12am'];
+        const xTicks = xLabels.length - 1;
+        for (let i = 0; i <= xTicks; i++) {
+          const x = padding + (i * (width - padding) / xTicks);
+          ctx.moveTo(x, height - padding + 5);
+          ctx.lineTo(x, height - padding - 5);
+          ctx.stroke();
+          ctx.fillText(xLabels[i], x, height - padding + 20);
+        }
+
+        ctx.beginPath();
+        ctx.moveTo(padding, height - padding - scaledData[0]);
+        scaledData.forEach((d, idx) => {
+          ctx.lineTo(padding + (width - padding) / (scaledData.length - 1) * idx, height - padding - d);
+        });
+        ctx.strokeStyle = 'green'; 
+        ctx.lineWidth = 4; 
+        ctx.stroke();
+
+        ctx.save();
+        // ctx.translate(padding/5, height / 2);
+        // ctx.rotate(-Math.PI / 2);
+        // ctx.textAlign = 'center';
+        // ctx.fillText('No. of Students', 0, 0);
+        // ctx.restore();
+
+        // ctx.textAlign = 'center';
+        // ctx.fillText('Time', width / 2, height);
       }
     });
 
-    // Update floor numbers every 2 seconds
     const interval = setInterval(() => {
-        setFloorNumbers(floorNumbers => floorNumbers.map(number => {
-          // Decide randomly whether to add or subtract 1
-          let change = Math.random() > 0.5 ? 1 : -1;
-          // Calculate new number with change
-          let newNumber = number + change;
-          // Ensure new number stays within 50-200 range
-          if (newNumber < 50) return 50;
-          if (newNumber > 200) return 200;
-          return newNumber;
-        }));
-      }, 3000);
+      setFloorNumbers(floorNumbers => floorNumbers.map(number => {
+        let change = Math.random() > 0.5 ? 1 : -1;
+        let newNumber = number + change;
+        if (newNumber < 50) return 50;
+        if (newNumber > 200) return 200;
+        return newNumber;
+      }));
+    }, 3000);
 
     return () => clearInterval(interval);
   }, []);
@@ -107,6 +137,9 @@ const Group2 = (props) => {
                 <input className="group2-text62 componentsbuttondefault" type="button" value="Sign me up!"/>
               </div>
             </div>
+            <div className='group2-ad'>
+              <span>More UofT Libraries coming soon!</span>
+            </div>
           </div>
         </div>
         <div className='group2-frame32'>
@@ -126,7 +159,6 @@ const Group2 = (props) => {
   );
 };
 
-// Helper function to get ordinal numbers (1st, 2nd, 3rd, etc.)
 function getOrdinal(n) {
   const s=["th","st","nd","rd"],
         v=n%100;
@@ -134,4 +166,3 @@ function getOrdinal(n) {
 }
 
 export default Group2;
-
